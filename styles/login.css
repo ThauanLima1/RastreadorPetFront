@@ -128,13 +128,22 @@ body {
 }
 
 .btn-login {
-
+    width: 100%;
+    background-color: #212529;
+    color: white;
+    padding: 18px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.4s ease all;
 }
 
 .btn-login:hover {
     background-color: #000;
     transform: scale(1.01);
 }
+
 
 .register-link {
     text-align: center;
@@ -167,10 +176,10 @@ body {
 
 .quote-text {
     color: #6c757d;
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     line-height: 1.6;
     margin-bottom: 370px;
-}
+}   
 
 .pet-image {
     position: absolute;
@@ -190,3 +199,9 @@ body {
         transform: translateX(0);
     }
 }
+
+@media screen and(max-width: 950px) {
+    .right-section{
+        display: none;
+    }
+}   
