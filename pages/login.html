@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RastreadorPet</title>
+    <link href="../styles/login.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container-fluid">
+        <div class="row h-100">
+            <div class="col-md-6 left-section d-flex flex-column justify-content-center">
+                   
+
+                <div class="login-form">
+                    <div class="logo">
+                        <img src="../imgs/logo.png">
+                    </div>
+                    <h2>Bem vindo!</h2>
+                    <p>Logue com sua conta para continuar.</p>
+
+                    <button class="google-btn">
+                        <img src="../imgs/google.svg">
+                        Logue com o Google
+                    </button>
+
+                    <div class="divider">Ou</div>
+
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Digite seu email">
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="form-label">Senha</label>
+                            <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
+                        </div>
+
+                        <div class="forgot-password">
+                            <a href="./recoverPassword.html">Esqueceu a senha?</a>
+                        </div>
+
+                        <button type="submit" class="btn-login">Logue</button>
+                    </form>
+
+                    <div class="register-link">
+                        Não possui uma conta ainda? <a href="../pages/register.html">Cadastre-se</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 right-section">
+                <div class="quote-card">
+                    <p class="quote-text">
+                        Quem cuida com amor, nunca perde o caminho<br>
+                        — nem o pet.
+                    </p>
+                    <img src="../imgs/cat.png"
+                         class="pet-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/FirebaseConfig.js"></script>
+    <script type="module" src="../js/loginWithGoogle.js"></script>
+    <script type="module" src="../js/login.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>
