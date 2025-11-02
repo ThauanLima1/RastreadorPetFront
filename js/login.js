@@ -22,3 +22,31 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+//modal
+const openBtn = document.getElementById("recuperarSenha");
+const modal = document.getElementById("modalRecovery");
+const overlay = document.getElementById("modalOverlay");
+const closeBtn = document.getElementById("closeModal");
+
+openBtn.addEventListener("click", () => {
+  modal.style.display = "block";
+  overlay.style.display = "block";
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+  overlay.style.display = "none";
+});
+
+//Funnção olho senha
+const olho = document.getElementById('eye');
+const senha = document.getElementById('password');
+
+olho.addEventListener("click",  () => {
+    const isPassword = senha.getAttribute("type") === "password";
+    const type = senha.getAttribute("type") === "password" ? "text" : "password";
+    senha.setAttribute("type", type);
+    olho.style.color = isPassword ? '#4285f4' : '#3c4043';
+});

@@ -27,19 +27,15 @@ body {
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: center;
-    margin: 30px 0px
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    z-index: 1000;
 }
 
 
-.logo-icon {
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    border-radius: 50%;
+.logo img{
+    height: 5vh;
 }
 
 .logo-text {
@@ -48,7 +44,7 @@ body {
     font-size: 2rem;
 }
 
-.login-form {
+.login-form {   
     width: 100%;
     max-width: 480px;
     padding: 20px;
@@ -68,6 +64,7 @@ body {
 
 .google-btn {
     width: 100%;
+    height: 4.8vh;
     background-color: #f5f5f5;
     border: 1px solid #c4c4c4;
     color: #3c4043;
@@ -87,8 +84,7 @@ body {
 }
 
 .google-btn:hover {
-    background-color: #e4e4e4;
-
+    background-color: #cccccc;
 }
 
 .divider {
@@ -100,25 +96,37 @@ body {
 
 .form-control {
     padding: 10px;
-    height: 4.5vh;
+    height: 4.8vh;
     border-radius: 6px;
     border: 1px solid #c4c4c4 !important; 
     background-color: #f5f5f5;
     margin-bottom: 20px;
-    color: #979797;
-    font-size: 1rem !important;
-}
+    color: #bdbdbd;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+}   
 
 .form-label {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 500;
-    margin-bottom: 6px;
-    color: #6E6E6E;
+    margin-bottom: 5px !important;
+    color: #3b3b3b;
+}
+
+.wrapper-eye{
+    position: relative;
+}
+
+.eye{  
+    position: absolute;
+    top: 55%;
+    right: 15px;
+    width: auto;
+    height: 18px;
 }
 
 .forgot-password {
     text-align: right;
-    margin-bottom: 12px;
 }
 
 .forgot-password a {
@@ -129,9 +137,10 @@ body {
 
 .btn-login {
     width: 100%;
-    background-color: #212529;
+    background-color: #292c30;
     color: white;
     padding: 18px;
+    margin: 5px 0;
     border: none;
     border-radius: 6px;
     font-weight: 500;
@@ -141,13 +150,11 @@ body {
 
 .btn-login:hover {
     background-color: #000;
-    transform: scale(1.01);
 }
 
 
 .register-link {
     text-align: center;
-    margin-top: 12px;
     font-size: 1rem;
     padding-bottom: 60px;
 }
@@ -162,32 +169,75 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;    
+    padding: 0 !important;
 }
-
-.quote-card {
-    background-color: white;
-    border-radius: 20px;
-    padding: 40px;
-    min-height: 75vh;  
-    width: 60%;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.37);
-    position: relative;
-}
-
-.quote-text {
-    color: #6c757d;
-    font-size: 1.5rem;
-    line-height: 1.6;
-    margin-bottom: 370px;
-}   
 
 .pet-image {
-    position: absolute;
-    bottom: 0;
-    right: 0.1px;
-    width: 250px;
-    height: auto;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
 }
+
+/* modal recuperar senha */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
+    display: none;
+  }
+  
+  .modal-recovery {
+    max-height: 100vh;
+    overflow-y: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    z-index: 1000;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.281);
+    width: 80%;
+    max-width: 550px;
+    display: none;
+  }
+
+  .modal-recovery p{
+    text-align: center;
+    margin-top: 12px;
+    font-size: 1.2rem;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
+  } 
+
+  .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  #closeModal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: auto;
+    height: 15px;
+    cursor: pointer;  
+  } 
+  
 
 @keyframes fadeIn {
     from {
@@ -200,8 +250,14 @@ body {
     }
 }
 
-@media screen and(max-width: 950px) {
+@media screen and (max-width: 950px) {
     .right-section{
         display: none;
     }
-}   
+
+    .logo{
+        position: absolute; 
+        top: 20px;
+        left: 20px;
+    }
+} 

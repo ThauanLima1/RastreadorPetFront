@@ -27,3 +27,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+const olho = document.getElementById('eye');
+const senha = document.getElementById('password');
+const confirmarSenha = document.getElementById('confirmPassword');
+
+olho.addEventListener("click",  () => {
+    const isPassword = senha.getAttribute("type") === "password";
+    const type = senha.getAttribute("type") === "password" ? "text" : "password";
+    senha.setAttribute("type", type);
+    confirmarSenha.setAttribute("type", type);
+    olho.style.color = isPassword ? '#4285f4' : '#3c4043';
+});
