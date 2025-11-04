@@ -1,5 +1,5 @@
 import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
-import { auth } from "./FirebaseConfig.js";
+import { auth } from "../config/FirebaseConfig.js";
 
 const provider = new GoogleAuthProvider();
 
@@ -14,6 +14,11 @@ const loginWithGoogle = async () => { //<- Função assincrona
     }
 }
 
-document.querySelector(".google-btn").addEventListener("click", loginWithGoogle);
+document.addEventListener("DOMContentLoaded", () => {
+    const googleBtn = document.querySelector(".google-btn");
+    if (googleBtn) {
+        googleBtn.addEventListener("click", loginWithGoogle);
+    }
+});
 
- 
+export { loginWithGoogle };

@@ -1,6 +1,8 @@
 
 import { createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
-import { auth } from "./FirebaseConfig.js";
+import { auth } from "../config/FirebaseConfig.js";
+import { visibility } from "../domUtils/visibility.js";
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const registerForm = document.querySelector(".registerForm");
@@ -10,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
 
             const user = document.getElementById("user").value;
+            const phone = document.getElementById("phone").value;
             const email = document.getElementById("email").value;
             const password = document.getElementById("ConfirmPassword").value;
 
@@ -26,17 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-});
 
-
-const olho = document.getElementById('eye');
-const senha = document.getElementById('password');
-const confirmarSenha = document.getElementById('confirmPassword');
-
-olho.addEventListener("click",  () => {
-    const isPassword = senha.getAttribute("type") === "password";
-    const type = senha.getAttribute("type") === "password" ? "text" : "password";
-    senha.setAttribute("type", type);
-    confirmarSenha.setAttribute("type", type);
-    olho.style.color = isPassword ? '#4285f4' : '#3c4043';
+    visibility(
+        document.getElementById('eye'),
+        document.getElementById('password'),
+        document.getElementById('confirmPassword')
+    );
 });
