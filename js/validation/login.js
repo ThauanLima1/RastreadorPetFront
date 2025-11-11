@@ -2,27 +2,39 @@ import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/1
 import { auth } from "../config/FirebaseConfig.js";
 import { visibility } from "../domUtils/visibility.js";
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("form");
     
     if (loginForm) {
-        loginForm.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
-            
-            try {
-                const userCredential = await signInWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-                console.log("Usuário logado:", user);
-                window.location.href = "./homePage.html";
-            } catch (error) {
-                console.error("Deu ruim:", error);
-            }
-        });
-    }
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        
+        try {
+          const userCredential = await signInWithEmailAndPassword(auth, email, password);
+          const user = userCredential.user;
+          console.log("Usuário logado:", user);
+  
+          if (user.email === "admin@pettracker.com") {
 
+            window.location.href = "./adminPage.html";
+          }else{
+
+            window.location.href = "./homePage.html";
+          }
+            
+        } catch (error) {
+          console.error("Deu ruim:", error);
+        }
+      });
+    }
+  });
+  
+    
     //modal
     const openBtn = document.getElementById("recuperarSenha");
     const modal = document.getElementById("modalRecovery");
@@ -46,4 +58,4 @@ document.addEventListener("DOMContentLoaded", () => {
     if (eye && passwordField) {
         visibility(eye, passwordField, null);
     }
-});
+

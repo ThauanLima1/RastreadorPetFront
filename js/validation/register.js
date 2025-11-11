@@ -1,8 +1,6 @@
 
 import { createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
-import { auth } from "../config/FirebaseConfig.js";
-import { visibility } from "../domUtils/visibility.js";
-
+import { auth } from "./FirebaseConfig.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const registerForm = document.querySelector(".registerForm");
@@ -12,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
 
             const user = document.getElementById("user").value;
-            const phone = document.getElementById("phone").value;
             const email = document.getElementById("email").value;
             const password = document.getElementById("ConfirmPassword").value;
 
@@ -29,10 +26,4 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-
-    visibility(
-        document.getElementById('eye'),
-        document.getElementById('password'),
-        document.getElementById('confirmPassword')
-    );
 });
