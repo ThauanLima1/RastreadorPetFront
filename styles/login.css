@@ -26,6 +26,22 @@ body {
     align-items: center;
 }
 
+
+.error-message {
+    color: red; 
+    font-size: 0.85em; 
+    display: block; 
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+
+.general-error {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
 .logo {
     position: absolute;
     top: 30px;
