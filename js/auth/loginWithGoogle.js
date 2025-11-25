@@ -8,7 +8,7 @@ const loginWithGoogle = async () => { //<- Função assincrona
         const result = await signInWithPopup(auth, provider); // <- result é igual objeto que tem um usúario conectado.
         const user = result.user;
         console.log("Usúario logado:" + user);
-        window.location.href = "./homePage.html";
+        window.location.href = "../pages/map.html";
     }catch(error){
         console.error("Deu ruim:", error);
     }

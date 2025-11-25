@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 await updateProfile(firebaseUser, { displayName: user });
 
                 console.log("Cadastro realizado com sucesso:", firebaseUser);
-                window.location.href = "./homePage.html";
+                window.location.href = "../pages/map.html";
             } catch (error) {
                 console.error("Erro ao registrar:", error);
                 alert("Erro ao registrar: " + error.message);

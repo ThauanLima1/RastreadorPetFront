@@ -1,0 +1,226 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Poppins, sans-serif;
+  overflow: hidden; 
+}
+
+.nav-bar {
+  box-shadow: 0px 6px 12px rgba(189, 189, 189, 0.527);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.logo {
+  height: 40px;
+  margin: 15px;
+}
+
+.ponto {
+  height: 30px;
+  margin: 15px;
+}
+
+.nav-texto {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 5px;
+  text-decoration: none !important;
+  color: #010a1b;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.nav-texto:hover {
+  background-color: #ffffff;
+  color: #0f5848;
+}
+.duv img {
+  height: 25px;
+  margin-right: 8px;
+}
+.duvida {
+  background-color: #010a1b;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.duvida:hover {
+  background-color: #08204b;
+}
+
+/* Google maps */
+#map {
+  width: 100%;
+  height: 95vh;
+  border: none;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+.modal-recovery {
+  max-height: 100vh;
+  overflow-y: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  z-index: 1000;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.281);
+  width: 70%;
+  max-width: 500px;
+  display: none;
+}
+
+.modal-content h3{
+    margin: 0;
+}
+
+.geogence-p{
+    margin-bottom: 80px;
+}
+
+.add-geocercas{
+  margin: 30px 0;
+  height: 5.4vh;
+  background-color: #091835;
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+  border: none;
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.add-geocercas:hover {
+  background-color: #010a1b;
+  cursor: pointer;
+}
+
+.input-geofences {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-inside {
+  display: flex;
+  flex-direction: column;
+}
+
+input{
+    height: 5.4vh;
+    border-radius: 15px !important;
+    border: 1px solid #c4c4c4 !important; 
+    background-color: #f5f5f5;
+    margin-bottom: 10px;
+    color: #bdbdbd;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    width: auto;
+}
+
+label {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 3px;
+}
+
+#closeModal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: auto;
+  height: 15px;
+  cursor: pointer;
+}
+
+h4{
+    margin-bottom: 30px !important;
+}
+
+.geofence-list-info{
+    background-color: #dbdbdb;
+    border-radius: 15px;
+    height: 5.4vh;
+    gap: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.geofence-list-info p{
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.geofence-items{
+  margin-top: 20px;
+  gap: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.geofence-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #dbdbdb;
+  border-radius: 15px;
+  padding: 14px 0;
+  margin-bottom: 14px;
+  width: 100%;
+}
+
+.geofence-items-notes {
+  display: flex;
+  flex-direction: row;
+  gap: 28px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+}
+
+  .alert-box {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: #dc3545;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1100;
+            display: none;
+            animation: slideInRight 0.5s;
+            max-width: 300px;
+        }
+
+        .alert-box.show {
+            display: block;
+        }
+
+        .alert-box.success {
+            background: #28a745;
+        }
