@@ -19,9 +19,12 @@ onAuthStateChanged(auth, (user) => {
     carregarGeofences(userId);
   } else {
     console.log("Usuário não autenticado");
-    window.location.href = "../pages/login.html";
+    if (window.location.pathname !== "/pages/login.html") {
+      window.location.href = "../pages/login.html";
+    }
   }
 });
+
 
 
 
