@@ -1,59 +1,67 @@
-import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+import { createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 import { auth } from "../config/FirebaseConfig.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const openBtn = document.getElementById("recuperarSenha");
-  const modal = document.getElementById("modalRecovery");
-  const overlay = document.getElementById("modalOverlay");
-  const closeBtn = document.getElementById("closeModal");
-  const recoveryBtn = document.querySelector(".recuperar");
-  const recoveryInput = document.querySelector(".modal-content input");
+    const registerForm = document.querySelector(".registerForm");
 
-  openBtn?.addEventListener("click", () => {
-    modal.style.display = "block";
-    overlay.style.display = "block";
-  });
+    if (registerForm) {
+        registerForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-  closeBtn?.addEventListener("click", () => {
-    modal.style.display = "none";
-    overlay.style.display = "none";
-    recoveryInput.value = "";
-  });
+            const userInput = document.getElementById("user");
+            const emailInput = document.getElementById("email");
+            const passwordInput = document.getElementById("password");
+            const confirmPasswordInput = document.getElementById("confirmPassword");
 
-  recoveryBtn?.addEventListener("click", async () => {
-    const email = recoveryInput.value.trim();
+            if (!userInput || !emailInput || !phoneInput || !confirmPasswordInput) {
+                alert("Erro interno: campos não encontrados.");
+                return;
+            }
 
-    if (!email) {
-      alert("Digite um e-mail válido!");
-      return;
+            const user = userInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (!user || user.length < 3) {
+                alert("Informe um nome de usuário válido (mínimo 3 caracteres).");
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Informe um e-mail válido.");
+                return;
+            }
+
+            // const phoneRegex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/;
+            // if (!phoneRegex.test(phone)) {
+            //     alert("Informe um telefone válido no formato (XX) XXXXX-XXXX.");
+            //     return;
+            // }
+
+            if (password.length < 6) {
+                alert("A senha deve ter no mínimo 6 caracteres.");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("As senhas não coincidem.");
+                return;
+            }
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const firebaseUser = userCredential.user;
+
+                await updateProfile(firebaseUser, { displayName: user });
+
+                console.log("Cadastro realizado com sucesso:", firebaseUser);
+                window.location.href = "../pages/map.html";
+            } catch (error) {
+                console.error("Erro ao registrar:", error);
+                alert("Erro ao registrar: " + error.message);
+            }
+        });
     }
-
-    try {
-      recoveryBtn.disabled = true;
-      recoveryBtn.textContent = "Enviando...";
-
-      await sendPasswordResetEmail(auth, email);
-
-      alert("E-mail de recuperação enviado!");
-      modal.style.display = "none";
-      overlay.style.display = "none";
-      recoveryInput.value = "";
-
-    } catch (error) {
-      console.error(error);
-
-      if (error.code === "auth/user-not-found") {
-        alert("Este e-mail não está cadastrado.");
-      } else if (error.code === "auth/invalid-email") {
-        alert("Formato de e-mail inválido.");
-      } else if (error.code === "auth/too-many-requests") {
-        alert("Muitas tentativas. Tente novamente mais tarde.");
-      } else {
-        alert("Erro ao enviar e-mail de recuperação.");
-      }
-    } finally {
-      recoveryBtn.disabled = false;
-      recoveryBtn.textContent = "Recuperar";
-    }
-  });
 });
