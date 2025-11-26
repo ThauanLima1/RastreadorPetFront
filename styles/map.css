@@ -71,8 +71,8 @@ html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  background-color: rgba(97, 97, 97, 0.144);
+  z-index: 998;
   display: none;
 }
 
@@ -97,15 +97,12 @@ html {
     margin: 0;
 }
 
-.geogence-p{
-    margin-bottom: 80px;
-}
-
 .add-geocercas{
   margin: 30px 0;
   height: 5.4vh;
-  background-color: #091835;
-  color: white;
+  width: 90%;
+  background-color: #cbdcff;
+  color: rgb(63, 114, 255);
   font-weight: 500;
   font-size: 18px;
   border: none;
@@ -114,25 +111,25 @@ html {
 }
 
 .add-geocercas:hover {
-  background-color: #010a1b;
   cursor: pointer;
 }
 
 .input-geofences {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+
 }
 
 .input-inside {
   display: flex;
   flex-direction: column;
+  width: 90%;
 }
 
 input{
     height: 5.4vh;
     border-radius: 15px !important;
-    border: 1px solid #c4c4c4 !important; 
-    background-color: #f5f5f5;
+    background-color: #ffffff;
     margin-bottom: 10px;
     color: #bdbdbd;
     font-size: 1.1rem !important;
@@ -140,10 +137,16 @@ input{
     width: auto;
 }
 
+input:focus{
+  outline: 2px solid #5f1bff;
+  border: 1px solid #5f1bff !important; 
+
+}
+
 label {
   font-weight: 600;
-  font-size: 18px;
-  margin-bottom: 3px;
+  font-size: 16px;
+  margin-bottom: 1px;
 }
 
 #closeModal {
@@ -226,22 +229,23 @@ h4{
         }
 
 
-
     .sidebar {
         height: 100vh;
         width: 0;
         position: fixed;
         top: 0;
         right: 0;
-        background-color: #f3f3f3;
-        overflow-x: hidden;
-        transition: 0.5s;
-
+        background-color: #ffffff;
+        overflow: hidden;
+        transition: width 0.5s;
+        box-sizing: border-box;
+        z-index: 999;
     }
+
 
     .botao-voltar {
         display: flex;
-        padding: 30px;
+        padding: 30px 20px;
         justify-content: flex-start;
         align-items: center;
         cursor: pointer;
@@ -260,14 +264,26 @@ h4{
     }
 
     .sidebar h2 {
-        padding: 0 30px;
+        padding: 30px 0px 0px 20px;
         font-size: 2.5rem;
         background: linear-gradient(
           to right,
             #021230 30%,
             #d0cfff8a 60%
         );
+        background-clip: text;  
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         color: transparent;
     }
+
+.geogence-p{
+  max-width: 80%;
+  padding: 0 20px;
+}
+
+.botao-div{
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}

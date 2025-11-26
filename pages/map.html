@@ -20,16 +20,14 @@
         </div>
 
         <div
-          class="col-6 d-flex justify-content-center align-items-center gap-3"
-        >
-          <a href="#" class="nav-texto">Pets</a>
-          <a href="javascript:void(0)" class="nav-texto" id="geofencesBtn">Geocercas</a>
+          class="col-6 d-flex justify-content-center align-items-center gap-3">
+          <a href="#" class="nav-texto" id="petsBtn">Pets</a>
+          <a href="javascript:void(0)" class="nav-texto" id="geofencesBtn">Geofences</a>
           <a href="#" class="nav-texto" id="historicoBtn">Histórico</a>
         </div>
 
         <div
-          class="duv col-3 d-flex justify-content-end align-items-center gap-3 pe-4"
-        >
+          class="duv col-3 d-flex justify-content-end align-items-center gap-3 pe-4">
           <button class="duvida">Dúvidas?</button>
           <img src="../imgs/config.png" alt="" />
         </div>
@@ -37,39 +35,50 @@
     </nav>
     <div id="map"></div>
 
-
-<div class="sidebar" id="sidenav">
- <div class="botao-voltar" id="closebtn">
-  <img src="../imgs/voltar.svg"/>
-  <span>Voltar</span>
- </div>
-   <h2>Histórico</h2>
+<div class="sidebar" id="sidenavpet">
+  <div class="botao-voltar closebtn" data-target="sidenavpet">
+    <img src="../imgs/voltar.svg"/>
+    <span>Voltar</span>
+  </div>
+  <h2>Pets</h2>
 </div>
 
+<div class="sidebar" id="sidenavgeocercas">
+  <div class="botao-voltar closebtn" data-target="sidenavgeocercas">
+    <img src="../imgs/voltar.svg" />
+    <span>Voltar</span>
+  </div>
+  <h2>Geofences</h2>
+  <p class="geogence-p">Clique no mapa para definir o centro da zona segura.</p>
 
+  <div class="input-geofences">
+    <div class="input-inside">
+      <label>Nome</label>
+      <input type="text" placeholder="Casa, Parque, Trabalho" id="geofenceLocal" class="form-control label"/>
+    </div>
+<!-- 
+    <div class="input-inside">
+      <label>Raio (metros)</label>
+      <input type="number" id="geofenceRadius" value="100" class="form-control label" />
+    </div> -->
+  </div>
+    <div class="botao-div">
+      <button id="btnAdicionarZona" class="add-geocercas">Adicionar</button>
+    </div>
+</div>
 
+<div class="sidebar" id="sidenavhistorico">
+  <div class="botao-voltar closebtn" data-target="sidenavhistorico">
+    <img src="../imgs/voltar.svg"/>
+    <span>Voltar</span>
+  </div>
+  <h2>Histórico</h2>
+</div>
 
 <div class="modal-overlay" id="modalOverlay"></div>
-
-    <div class="modal-recovery" id="modalRecovery">
-        <img id="closeModal" src="../imgs/x.png">
-    <div class="modal-content">
+<!-- 
         <h3>Defina uma zona segura</h3>
-        <p class="geogence-p">Clique no mapa para definir o centro da zona segura.</p>
-
-        <div class="input-geofences">
-          <div class="input-inside">
-          <label>Local</label>
-          <input type="text" placeholder="Casa" id="geofenceLocal" class="form-control label" style="width: 280px; margin-right: 20px;" />
-          </div>
-
-          <div class="input-inside">
-          <label>Raio (metros)</label>
-          <input type="number" id="geofenceRadius" value="100" class="form-control label" />
-          </div>
-        </div>
         
-        <button id="btnAdicionarZona" class="add-geocercas">Adicionar</button>
 
         <h4>Zonas ativas</h4>
         <div class="geofence-list-info">
@@ -84,7 +93,7 @@
           <div class="no-history">Nenhuma zona criada ainda</div>
         </div>
     </div>
-    </div>
+    </div> -->
 
      <div class="alert-box" id="alertBox">
         <h4 id="alertTitle">⚠️ Alerta!</h4>

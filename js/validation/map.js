@@ -39,30 +39,6 @@ let lastGeofenceCheck = false;
 
 
 // Funções de modal
-function closeModal(modalId) {
-  const modal = document.getElementById(modalId);
-  if (modal) modal.style.display = "none";
-
-  const overlay = document.getElementById("modalOverlay");
-  if (overlay) overlay.style.display = "none";
-}
-
-const openBtn = document.getElementById("geofencesBtn");
-const modal = document.getElementById("modalRecovery");
-const overlay = document.getElementById("modalOverlay");
-const closeBtn = document.getElementById("closeModal");
-
-if (openBtn && modal && overlay && closeBtn) {
-  openBtn.addEventListener("click", () => {
-    modal.style.display = "block";
-    overlay.style.display = "block";
-  });
-
-  closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-    overlay.style.display = "none";
-  });
-}
 
 
 
@@ -391,25 +367,6 @@ function calcularDistancia(lat1, lng1, lat2, lng2) {
 }
 
 
-document.getElementById("historicoBtn").onclick = openNav;
-function openNav() {
-  const sidenav = document.getElementById("sidenav");
-    sidenav.style.width = "350px";
-    console.log("Sidebar aberta");
-}
-
-
-document.getElementById("closebtn").onclick = closeNav;
-function closeNav() {
-  const sidenav = document.getElementById("sidenav");
-    sidenav.style.width = "0";
-}
-
-
-
-
-
-
 function monitorarLocalizacao() {
   const localizacaoRef = ref(database, "localizacao_atual");
   onValue(localizacaoRef, (snapshot) => {
@@ -435,21 +392,61 @@ function monitorarLocalizacao() {
 
 
 function showAlert(message, type = 'error') {
-            const alertBox = document.getElementById('alertBox');
-            const alertTitle = document.getElementById('alertTitle');
-            const alertMessage = document.getElementById('alertMessage');
-            
-            alertBox.className = 'alert-box show';
-            if (type === 'success') {
-                alertBox.classList.add('success');
-                alertTitle.textContent = 'Sucesso!';
-            } else {
-                alertTitle.textContent = 'Alerta!';
-            }
-            
-            alertMessage.textContent = message;
-            
-            setTimeout(() => {
-                alertBox.classList.remove('show');
-            }, 7000);
-        }
+  const alertBox = document.getElementById('alertBox');
+  const alertTitle = document.getElementById('alertTitle');
+  const alertMessage = document.getElementById('alertMessage');
+
+  alertBox.className = 'alert-box show';
+  if (type === 'success') {
+    alertBox.classList.add('success');
+    alertTitle.textContent = 'Sucesso!';
+  } else {
+    alertTitle.textContent = 'Alerta!';
+  }
+
+  alertMessage.textContent = message;
+
+  setTimeout(() => {
+    alertBox.classList.remove('show');
+  }, 7000);
+}
+
+
+
+
+const overlay = document.getElementById("modalOverlay");
+
+// Funções para abrir
+document.getElementById("petsBtn").onclick = () => openNav("sidenavpet");
+document.getElementById("geofencesBtn").onclick = () => openNav("sidenavgeocercas");
+document.getElementById("historicoBtn").onclick = () => openNav("sidenavhistorico");
+
+function openNav(id) {
+  closeAllNavs();
+
+  const sidenav = document.getElementById(id);
+  sidenav.style.width = "350px";
+  console.log("Sidebar aberta:", id);
+    overlay.style.display = "block"; 
+}
+
+function closeAllNavs() {
+  document.querySelectorAll(".sidebar").forEach(sidebar => {
+    sidebar.style.width = "0";
+  });
+  overlay.style.display = "none";
+}
+
+document.querySelectorAll(".closebtn").forEach(btn => {
+  btn.onclick = () => {
+    const target = btn.getAttribute("data-target");
+    closeNav(target);
+  };
+});
+
+function closeNav(id) {
+  const sidenav = document.getElementById(id);
+  sidenav.style.width = "0";
+  console.log("Sidebar fechada:", id);
+  overlay.style.display = "none";
+}
