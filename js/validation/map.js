@@ -33,6 +33,7 @@ let geofenceCircles = [];
 let modoGeofence = false;
 let googleMap;
 let petMarker = null;
+let mapReady = false;
 let lastGeofenceCheck = false; 
 
 
@@ -68,12 +69,12 @@ if (openBtn && modal && overlay && closeBtn) {
 // Inicializa o mapa
 export function initMap() {
   const pos = { lat: -12.9714, lng: -38.5014 };
-
+  
   googleMap = new google.maps.Map(document.getElementById("map"), {
     zoom: 16,
     center: pos,
   });
-
+  
   petMarker = new google.maps.Marker({
     position: pos,
     map: googleMap,
@@ -82,35 +83,32 @@ export function initMap() {
       scaledSize: new google.maps.Size(30, 30),
     },
   });
-
-
-
-  // Escuta localização no Firebase
-  const localizacaoRef = ref(database, "localizacao_atual");
-  onValue(
-    localizacaoRef,
-    (snapshot) => {
-      const dados = snapshot.val();
-      if (dados?.lat && dados?.lng) {
-        const novaPos = { lat: dados.lat, lng: dados.lng };
-        petMarker.setPosition(novaPos);
-        googleMap.setCenter(novaPos);
-      }
-    },
-    (error) => {
-      console.error("Erro ao escutar localização: ", error);
-    }
-  );
-
+  
+  // MARCA MAPA COMO PRONTO
+  mapReady = true;
+  
   configurarClickMapa();
   monitorarLocalizacao();
+  
+  // ESCUTA LOCALIZAÇÃO APENAS APÓS MAPA CARREGAR
+  const localizacaoRef = ref(database, "localizacao_atual");
+  onValue(localizacaoRef, (snapshot) => {
+    if (mapReady && snapshot.val()?.lat) {
+      const novaPos = { lat: snapshot.val().lat, lng: snapshot.val().lng };
+      petMarker.setPosition(novaPos);
+      googleMap.setCenter(novaPos);
+    }
+  });
 }
-
-
 
 
 // Carregar geofences do Firebase
 function carregarGeofences(userId) {
+  if (!mapReady) {
+    console.log("Mapa não pronto. Aguardando...");
+    setTimeout(() => carregarGeofences(userId), 500);
+    return;
+  }
   console.log(`Carregando geofences para usuário ${userId}`);
   const geofenceRef = ref(database, `/usuarios/${userId}/geofences`);
 
@@ -145,9 +143,17 @@ function carregarGeofences(userId) {
 // Desenhar geofences no mapa 
 function desenharGeofences() {
   console.log("Desenhando zonas seguras no mapa...");
+  
+  // VERIFICAÇÃO CRÍTICA
+  if (typeof google === 'undefined' || !google.maps || !googleMap) {
+    console.warn("Google Maps não carregado. Aguardando...");
+    setTimeout(desenharGeofences, 200);
+    return;
+  }
+  
   geofenceCircles.forEach((circle) => circle.setMap(null));
   geofenceCircles = [];
-
+  
   geofences.forEach((zone) => {
     const circle = new google.maps.Circle({
       strokeColor: "#001764ff",
@@ -159,10 +165,10 @@ function desenharGeofences() {
       center: { lat: zone.lat, lng: zone.lng },
       radius: zone.radius,
     });
-
     geofenceCircles.push(circle);
   });
 }
+
 
 
 
@@ -385,6 +391,19 @@ function calcularDistancia(lat1, lng1, lat2, lng2) {
 }
 
 
+document.getElementById("historicoBtn").onclick = openNav;
+function openNav() {
+  const sidenav = document.getElementById("sidenav");
+    sidenav.style.width = "350px";
+    console.log("Sidebar aberta");
+}
+
+
+document.getElementById("closebtn").onclick = closeNav;
+function closeNav() {
+  const sidenav = document.getElementById("sidenav");
+    sidenav.style.width = "0";
+}
 
 
 
