@@ -178,7 +178,7 @@ function ativarModoGeofence() {
   modoGeofence = true;
   googleMap.setOptions({ cursor: "crosshair" });
   showAlert('Clique no mapa para definir a zona segura', 'success');
-  closeModal("modalRecovery");
+  closeAllNavs();
 }
 document.getElementById("btnAdicionarZona").addEventListener("click", ativarModoGeofence);
 
@@ -260,23 +260,6 @@ function mostrarGeofence() {
 
 
 
-
-
-// Centralizar mapa na zona
-function centralizarZona(index) {
-  const zone = geofences[index];
-  googleMap.setCenter({ lat: zone.lat, lng: zone.lng });
-  googleMap.setZoom(16);
-  closeModal("modalRecovery");
-}
-window.centralizarZona = centralizarZona;
-
-
-
-
-
-
-
 // Excluir geofence
 function excluirZona(zoneId) {
   if (confirm("Tem certeza que deseja excluir esta zona segura?")) {
@@ -293,8 +276,6 @@ function excluirZona(zoneId) {
   }
 }
 window.excluirZona = excluirZona;
-
-
 
 
 
@@ -410,6 +391,18 @@ function showAlert(message, type = 'error') {
     alertBox.classList.remove('show');
   }, 7000);
 }
+
+
+document.getElementById('mapaBtn').onclick = function centralizarPet() {
+  if (petMarker && petMarker.getPosition()) {
+    const posicao = petMarker.getPosition();
+    googleMap.setCenter({ lat: posicao.lat(), lng: posicao.lng() });
+    googleMap.setZoom(16);
+  } else {
+    showAlert('Pet offline - aguardando GPS', 'error');
+  }
+}
+// window.centralizarPet = centralizarPet;
 
 
 
